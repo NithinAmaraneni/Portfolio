@@ -73,9 +73,14 @@ export default function ResumePage() {
               <h2 className="text-2xl font-bold text-slate-800 mb-4">Choose a Resume to Preview</h2>
               <div className="flex gap-4 flex-wrap">
                 {Object.keys(resumes).map((key) => (
-                  <button key={key} onClick={() => setSelectedResume(key)} className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${selectedResume === key ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>
-                    {resumes[key].name}
-                  </button>
+                  <button
+                  key={key}
+                  onClick={() => setSelectedResume(key as "General" | "Specialized" | "Specialized2")}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${selectedResume === key ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
+                >
+                  {resumes[key].name}
+                </button>
+                
                 ))}
               </div>
             </div>
