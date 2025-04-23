@@ -16,12 +16,12 @@ export default function ResumePage() {
       docx: "/resume/General-cv.docx",
     },
     Specialized: {
-      name: "Specialized Resume",
+      name: "Specialized Full Stack Resume",
       pdf: "/resume/Specialized-cv.pdf",
       docx: "/resume/Specialized-cv.docx",
     },
     Specialized2: {
-      name: "Specialized Resume 2",
+      name: "Specialized Machine Learning Resume",
       pdf: "/resume/Specialized-2-cv.pdf",
       docx: "/resume/Specialized-2-cv.docx",
     },
