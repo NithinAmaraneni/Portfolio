@@ -89,7 +89,7 @@ export default function SkillsPage() {
                       {skill.icon}
                     </div>
                     <span>{skill.name}</span>
-                    <Tooltip id={`${category}-${skill.name}`} place="right" effect="solid" />
+                    <Tooltip id={`${category}-${skill.name}`} place="right"  />
                   </li>
                 ))}
               </ul>
