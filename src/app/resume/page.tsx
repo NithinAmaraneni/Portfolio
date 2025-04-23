@@ -8,16 +8,6 @@ import { Mail } from "lucide-react";
 export default function ResumePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState("view");
-  const [selectedResume, setSelectedResume] = useState("General");
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   const resumes = {
     General: {
@@ -35,9 +25,23 @@ export default function ResumePage() {
       pdf: "/resume/Specialized-2-cv.pdf",
       docx: "/resume/Specialized-2-cv.docx",
     },
-  };
+  } as const;
+
+  type ResumeKey = keyof typeof resumes;
+  const [selectedResume, setSelectedResume] = useState<ResumeKey>("General");
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const currentResume = resumes[selectedResume];
+
+  // ... (rest of your JSX remains unchanged)
+
 
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-12 px-6 overflow-hidden">
