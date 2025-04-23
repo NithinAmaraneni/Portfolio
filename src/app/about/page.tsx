@@ -6,7 +6,8 @@ import { Code, Server, Database, Brain, PenTool, Gamepad, Mountain, Music, BookO
 
 export default function About() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
