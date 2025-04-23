@@ -7,13 +7,32 @@ export default function Projects() {
   const projects = [
     {
       title: "Startup Ecosystem Tracker",
-      description:<p>"Developed a dynamic web app to monitor and benchmark startups with insights on funding trends, growth, and market position<br/><br></br>Implemented ML models to forecast startup funding potential and success likelihood using historical and marker data<br/><br></br>Created an interactive dashboard for seamless exploration, comparison, and data-driven decisions for entrepreneurs and investors"</p>,
+      description: (
+        <p>
+          Developed a dynamic web app to monitor and benchmark startups with insights on funding trends, growth, and market position.
+          <br /><br />
+          Implemented ML models to forecast startup funding potential and success likelihood using historical and market data.
+          <br /><br />
+          Created an interactive dashboard for seamless exploration, comparison, and data-driven decisions for entrepreneurs and investors.
+        </p>
+      ),
       stack: "Python, Streamlit, XGBoost, Linear Regression",
       images: ["/projects/startup1.jpg", "/projects/startup2.jpg"]
     },
     {
       title: "Advanced Contextual Question Answering Chatbot",
-      description: <p>"Developed an advanced contextual question-answering chatbot leveraging the T5 transformer model. <br/><br></br>Fine-tuned the model on SQuAD dataset to deliver precise and context-aware responses.<br/><br></br>Designed and implemented model architecture to enhance NLP capabilities.<br/><br></br>Achieved high accuracy in real-time question answering tasks through optimization."</p>,
+      description: (
+        <p>
+          Developed an advanced contextual question-answering chatbot leveraging the T5 transformer model.
+          <br /><br />
+          Fine-tuned the model on the SQuAD dataset to deliver precise and context-aware responses.
+          <br /><br />
+          Designed and implemented model architecture to enhance NLP capabilities.
+          <br /><br />
+          Achieved high accuracy in real-time question answering tasks through optimization.
+        </p>
+      ),
+      
       stack: "Python, Pandas, Fuzzy Logic",
       images: ["/projects/chatbot1.png", "/projects/chatbot2.png"]
     },

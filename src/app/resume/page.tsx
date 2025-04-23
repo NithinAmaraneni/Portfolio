@@ -48,7 +48,7 @@ export default function ResumePage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-emerald-400 to-teal-600 bg-clip-text text-transparent">My Resume</span>
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">Here's my professional experience, education, and skills. You can view online or download in your preferred format.</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">Here&apos;s my professional experience, education, and skills. You can view online or download in your preferred format.</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="bg-white rounded-xl shadow-xl p-4 mb-8 flex justify-center space-x-4 backdrop-blur-sm bg-white/70">

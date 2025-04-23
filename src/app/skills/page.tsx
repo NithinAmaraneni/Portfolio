@@ -60,7 +60,7 @@ export default function SkillsPage() {
             </span>
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Here's a snapshot of the technologies and tools I work with across development and machine learning.
+            Here&apos;s a snapshot of the technologies and tools I work with...
           </p>
         </motion.div>
 

@@ -70,7 +70,7 @@ export default function Home() {
           className="w-full md:w-1/2 md:pl-20 text-center md:text-left"
         >
           <h1 className="text-3xl md:text-5xl font-bold font-['Poppins'] mb-4 leading-tight">
-            <span className="text-slate-800">Hi, I'm</span>
+            <span className="text-slate-800">Hi, I&apos;m</span>
             <br />
             <motion.span 
               className="inline-block bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600 bg-clip-text text-transparent font-black font-serif"
