@@ -11,7 +11,8 @@ export default function ResumePage() {
   const [selectedResume, setSelectedResume] = useState("General");
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
+
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener("mousemove", handleMouseMove);
