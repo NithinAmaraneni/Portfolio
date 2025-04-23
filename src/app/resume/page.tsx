@@ -4,17 +4,34 @@ import { useState, useEffect } from "react";
 import { Download, Eye, FileText, File, Mail } from "lucide-react";
 import Link from "next/link";
 
+// Define the type for a single resume
+interface Resume {
+  name: string;
+  pdf: string;
+  docx: string;
+}
+
+// Define the type for the resumes object with specific keys
+interface Resumes {
+  General: Resume;
+  Specialized: Resume;
+  Specialized2: Resume;
+}
+
 export default function ResumePage() {
+  // State for mouse position
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  // Define a type for the possible values of activeTab
+
+  // Type for tabs
   type Tab = "view" | "download";
   const [activeTab, setActiveTab] = useState<Tab>("view");
-  // Define a type for the resume keys
-  type ResumeKey = "General" | "Specialized" | "Specialized2";
+
+  // Type for resume keys
+  type ResumeKey = keyof Resumes;
   const [selectedResume, setSelectedResume] = useState<ResumeKey>("General");
 
+  // Mouse movement effect
   useEffect(() => {
-    // Add type annotation for the MouseEvent
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -22,7 +39,8 @@ export default function ResumePage() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const resumes: Record<ResumeKey, { name: string; pdf: string; docx: string }> = {
+  // Define resumes with explicit typing
+  const resumes: Resumes = {
     General: {
       name: "General Resume",
       pdf: "/resume/General-cv.pdf",
@@ -40,10 +58,12 @@ export default function ResumePage() {
     },
   };
 
+  // Current resume based on selected key
   const currentResume = resumes[selectedResume];
 
   return (
       <section className="relative min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-12 px-6 overflow-hidden">
+        {/* Interactive Gradient Orbs */}
         <div
             className="absolute opacity-30 blur-3xl rounded-full bg-gradient-to-r from-purple-300 to-blue-300 w-64 h-64 transition-all duration-500 ease-out"
             style={{ left: `${mousePosition.x * 0.05}px`, top: `${mousePosition.y * 0.05}px` }}
@@ -54,6 +74,7 @@ export default function ResumePage() {
         />
 
         <div className="max-w-5xl mx-auto">
+          {/* Heading */}
           <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -66,11 +87,12 @@ export default function ResumePage() {
             </span>
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Here's my professional experience, education, and skills. You can view online or download in your preferred
-              format.
+              Here&apos;s my professional experience, education, and skills. You can view online or download in your
+              preferred format.
             </p>
           </motion.div>
 
+          {/* Tabs */}
           <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,6 +108,8 @@ export default function ResumePage() {
                         ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-200"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
+                type="button"
+                aria-label="View Resume"
             >
               <Eye size={18} />
               View Resume
@@ -99,12 +123,15 @@ export default function ResumePage() {
                         ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-200"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
+                type="button"
+                aria-label="Download Resume"
             >
               <Download size={18} />
               Download Resume
             </motion.button>
           </motion.div>
 
+          {/* View Tab */}
           {activeTab === "view" && (
               <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -115,17 +142,19 @@ export default function ResumePage() {
                 <div className="mb-6">
                   <h2 className="text-2xl font-bold text-slate-800 mb-4">Choose a Resume to Preview</h2>
                   <div className="flex gap-4 flex-wrap">
-                    {Object.keys(resumes).map((key) => (
+                    {(Object.keys(resumes) as ResumeKey[]).map((key) => (
                         <button
                             key={key}
-                            onClick={() => setSelectedResume(key as ResumeKey)}
+                            onClick={() => setSelectedResume(key)}
                             className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                                 selectedResume === key
                                     ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md"
                                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                             }`}
+                            type="button"
+                            aria-label={`Select ${resumes[key].name}`}
                         >
-                          {resumes[key as ResumeKey].name}
+                          {resumes[key].name}
                         </button>
                     ))}
                   </div>
@@ -137,6 +166,7 @@ export default function ResumePage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-emerald-600 hover:text-emerald-700 flex items-center gap-1 text-sm"
+                      aria-label={`Open ${currentResume.name} in full screen`}
                   >
                     <Eye size={16} />
                     Open Full Screen
@@ -148,7 +178,7 @@ export default function ResumePage() {
                       Your browser does not support PDFs.{" "}
                       <a
                           href={currentResume.pdf}
-                          className="text-emerald-600 hover:underline ml-1"
+                          className="text-emerald-600 hover:underline"
                           target="_blank"
                           rel="noopener noreferrer"
                       >
@@ -160,6 +190,7 @@ export default function ResumePage() {
               </motion.div>
           )}
 
+          {/* Download Tab */}
           {activeTab === "download" && (
               <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -169,12 +200,13 @@ export default function ResumePage() {
               >
                 <h2 className="text-2xl font-bold mb-6 text-slate-800">Download Options</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Object.values(resumes).map((resume, index) => (
+                  {Object.values(resumes).map((resume) => (
                       <motion.div
-                          key={index}
+                          key={resume.name}
                           whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
                           className="bg-gradient-to-br from-slate-50 to-gray-100 rounded-xl shadow-md p-6 border border-gray-200"
                       >
+                        {/* PDF Section */}
                         <div className="mb-4 w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center text-red-600">
                           <File size={32} />
                         </div>
@@ -186,10 +218,12 @@ export default function ResumePage() {
                             href={resume.pdf}
                             download
                             className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                            aria-label={`Download ${resume.name} as PDF`}
                         >
                           <Download size={16} />
                           Download PDF
                         </a>
+                        {/* DOCX Section */}
                         <div className="mt-4 w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
                           <FileText size={32} />
                         </div>
@@ -201,6 +235,7 @@ export default function ResumePage() {
                             href={resume.docx}
                             download
                             className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                            aria-label={`Download ${resume.name} as DOCX`}
                         >
                           <Download size={16} />
                           Download DOCX
@@ -211,6 +246,7 @@ export default function ResumePage() {
               </motion.div>
           )}
 
+          {/* Contact Section */}
           <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -226,6 +262,8 @@ export default function ResumePage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2"
+                  type="button"
+                  aria-label="Contact Me"
               >
                 <Mail size={18} />
                 Contact Me

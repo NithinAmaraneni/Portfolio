@@ -6,11 +6,17 @@ import devAnimation from "@/assets/HomeAnimation.json";
 import bgAnimation from "@/assets/BGAnimation.json";
 import { useEffect, useState } from "react";
 
+// Define type for mouse position
+interface MousePosition {
+    x: number;
+    y: number;
+}
+
 export default function Home() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
 
     useEffect(() => {
-        // Add type annotation for the MouseEvent
+        // Add type annotation for MouseEvent
         const handleMouseMove = (e: MouseEvent) => {
             setMousePosition({ x: e.clientX, y: e.clientY });
         };
@@ -20,7 +26,7 @@ export default function Home() {
     }, []);
 
     return (
-        <section className="relative flex flex-col md:flex-row items-center justify-center min-h-[90vh] px-6 overflow-hidden bg-gradient-to-br from-slate-50 to-gray-100 text-white">
+        <section className="relative flex flex-col md:flex-row items-center justify-center min-h-[90vh] px-6 overflow-hidden bg-gradient-to-br from-slate-50 to-gray-100">
             {/* Interactive Gradient Orbs */}
             <div
                 className="absolute opacity-40 blur-3xl rounded-full bg-gradient-to-r from-purple-300 to-blue-300 w-64 h-64 transition-all duration-500 ease-out"
@@ -42,6 +48,7 @@ export default function Home() {
                 animationData={bgAnimation}
                 loop={true}
                 className="absolute top-0 left-0 w-full h-full z-0 object-cover opacity-20"
+                aria-hidden="true"
             />
 
             {/* Content Wrapper */}
@@ -54,7 +61,12 @@ export default function Home() {
                     whileHover={{ scale: 1.05 }}
                     className="w-full md:w-1/2 mt-10 md:mt-0 flex justify-center"
                 >
-                    <Lottie animationData={devAnimation} loop={true} className="w-[300px] md:w-[400px]" />
+                    <Lottie
+                        animationData={devAnimation}
+                        loop={true}
+                        className="w-[300px] md:w-[400px]"
+                        aria-hidden="true"
+                    />
                 </motion.div>
 
                 {/* Right Text with enhanced typography */}
@@ -65,7 +77,7 @@ export default function Home() {
                     className="w-full md:w-1/2 md:pl-20 text-center md:text-left"
                 >
                     <h1 className="text-3xl md:text-5xl font-bold font-['Poppins'] mb-4 leading-tight">
-                        <span className="text-slate-800">Hi, I'm</span>
+                        <span className="text-slate-800">Hi, I&apos;m</span>
                         <br />
                         <motion.span
                             className="inline-block bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600 bg-clip-text text-transparent font-black font-serif"
@@ -100,6 +112,8 @@ export default function Home() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium shadow-lg shadow-emerald-200 hover:shadow-xl transition-all duration-300"
+                                type="button"
+                                aria-label="Learn more about me"
                             >
                                 Know More
                             </motion.button>
