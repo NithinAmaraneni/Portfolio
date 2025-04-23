@@ -1,7 +1,10 @@
 "use client";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
-import Lottie from "lottie-react";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
 import devAnimation from "@/assets/HomeAnimation.json";
 import bgAnimation from "@/assets/BGAnimation.json";
 import { useEffect, useState } from "react";
