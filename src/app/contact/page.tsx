@@ -154,7 +154,7 @@ export default function Contact() {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              rows="4"
+              rows={4}
               required
               placeholder="Your Message"
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-400 focus:outline-none"
