@@ -9,7 +9,7 @@ export default function About() {
   const [activeSection, setActiveSection] = useState(null);
   
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
@@ -17,6 +17,7 @@ export default function About() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  
   const skills = [
     { name: "Frontend", icon: <Code size={20} /> },
     { name: "Backend", icon: <Server size={20} /> },
