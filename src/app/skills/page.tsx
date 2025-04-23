@@ -1,4 +1,7 @@
 "use client";
+import dynamic from "next/dynamic";
+const Tooltip = dynamic(() => import("../../components/TooltipClient"), { ssr: false });
+
 import { motion } from "framer-motion";
 import {
   SiReact, SiNextdotjs, SiHtml5, SiCss3, SiJavascript, SiTypescript,
@@ -7,7 +10,7 @@ import {
   SiGit, SiGithub, SiTailwindcss
 } from "react-icons/si";
 import { VscFileCode } from "react-icons/vsc";
-import { Tooltip } from "react-tooltip";
+//import { Tooltip } from "react-tooltip";
 
 export default function SkillsPage() {
   const skills = {
@@ -55,7 +58,7 @@ export default function SkillsPage() {
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-purple-500 to-indigo-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-400 to-teal-600 bg-clip-text text-transparent">
               My Skills
             </span>
           </h1>
