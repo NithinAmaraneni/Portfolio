@@ -1,16 +1,43 @@
 "use client";
 import { motion } from "framer-motion";
 import {
-  SiReact, SiNextdotjs, SiHtml5, SiCss3, SiJavascript, SiTypescript,
-  SiNodedotjs, SiExpress, SiMongodb, SiMysql,
-  SiTensorflow, SiPytorch, SiScikitlearn, SiPandas, SiNumpy,
-  SiGit, SiGithub, SiTailwindcss
+  SiReact,
+  SiNextdotjs,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiTypescript,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiTensorflow,
+  SiPytorch,
+  SiScikitlearn,
+  SiPandas,
+  SiNumpy,
+  SiGit,
+  SiGithub,
+  SiTailwindcss,
 } from "react-icons/si";
 import { VscFileCode } from "react-icons/vsc";
 import { Tooltip } from "react-tooltip";
+import {JSX} from "react";
+
+// Define the type for a single skill
+interface Skill {
+  name: string;
+  icon: JSX.Element;
+  desc: string;
+}
+
+// Define the type for the skills object
+interface Skills {
+  [category: string]: Skill[];
+}
 
 export default function SkillsPage() {
-  const skills = {
+  const skills: Skills = {
     Frontend: [
       { name: "React", icon: <SiReact />, desc: "UI library for building interfaces" },
       { name: "Next.js", icon: <SiNextdotjs />, desc: "React framework for production" },
@@ -43,60 +70,58 @@ export default function SkillsPage() {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-12 px-6 overflow-hidden">
-      <div className="absolute opacity-30 blur-3xl rounded-full bg-gradient-to-r from-pink-300 to-purple-300 w-64 h-64 left-10 top-10 animate-pulse" />
-      <div className="absolute opacity-20 blur-3xl rounded-full bg-gradient-to-r from-indigo-300 to-sky-300 w-72 h-72 right-10 bottom-10 animate-pulse" />
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-12 px-6 overflow-hidden">
+        <div className="absolute opacity-30 blur-3xl rounded-full bg-gradient-to-r from-pink-300 to-purple-300 w-64 h-64 left-10 top-10 animate-pulse" />
+        <div className="absolute opacity-20 blur-3xl rounded-full bg-gradient-to-r from-indigo-300 to-sky-300 w-72 h-72 right-10 bottom-10 animate-pulse" />
 
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-purple-500 to-indigo-600 bg-clip-text text-transparent">
               My Skills
             </span>
-          </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Here&apos;s a snapshot of the technologies and tools I work with...
-          </p>
-        </motion.div>
+            </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Here&#39;s a snapshot of the technologies and tools I work with...
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([category, items], index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.02 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-xl shadow-2xl p-6 border border-gray-200 backdrop-blur-sm bg-white/70 hover:shadow-purple-200 transition-shadow duration-300"
-            >
-              <h3 className="text-xl font-semibold mb-4 text-emerald-600">{category}</h3>
-              <ul className="space-y-3">
-                {items.map((skill, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center gap-3 text-gray-700 group relative"
-                  >
-                    <div
-                      className="text-3xl text-emerald-500 transition-transform group-hover:rotate-6 group-hover:scale-110"
-                      data-tooltip-id={`${category}-${skill.name}`}
-                      data-tooltip-content={skill.desc}
-                    >
-                      {skill.icon}
-                    </div>
-                    <span>{skill.name}</span>
-                    <Tooltip id={`${category}-${skill.name}`} place="right" effect="solid" />
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Object.entries(skills).map(([category, items], index) => (
+                <motion.div
+                    key={category}
+                    whileHover={{ scale: 1.02 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="bg-white rounded-xl shadow-2xl p-6 border border-gray-200 backdrop-blur-sm bg-white/70 hover:shadow-purple-200 transition-shadow duration-300"
+                >
+                  <h3 className="text-xl font-semibold mb-4 text-emerald-600">{category}</h3>
+                  <ul className="space-y-3">
+                    {items.map((skill) => (
+                        <li
+                            key={skill.name}
+                            className="flex items-center gap-3 text-gray-700 group relative"
+                            data-tooltip-id={`${category}-${skill.name}`}
+                            data-tooltip-content={skill.desc}
+                        >
+                          <div className="text-3xl text-emerald-500 transition-transform group-hover:rotate-6 group-hover:scale-110">
+                            {skill.icon}
+                          </div>
+                          <span>{skill.name}</span>
+                          <Tooltip id={`${category}-${skill.name}`} place="right" />
+                        </li>
+                    ))}
+                  </ul>
+                </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 }
