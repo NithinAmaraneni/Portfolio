@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Code, Server, Database, Brain, Settings, PenTool, Camera, Gamepad, Mountain, Music, ActivitySquare, BookOpen } from "lucide-react";
+import { Code, Server, Database, Brain, PenTool, Gamepad, Mountain, Music, BookOpen } from "lucide-react";
 
 export default function About() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -216,7 +216,7 @@ export default function About() {
               <h2 className="text-2xl font-bold mb-6 text-slate-800">Full Stack Developer & ML Engineer</h2>
               <p className="text-gray-700 text-lg leading-7 mb-6">
                 Creating end-to-end solutions with modern technologies for web applications
-                and AI-powered systems. I'm passionate about building scalable and innovative software 
+                and AI-powered systems. I &apos m passionate about building scalable and innovative software 
                 that solves real-world problems.
               </p>
               <div className="flex flex-wrap gap-2">
